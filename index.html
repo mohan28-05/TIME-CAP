@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keepsake - Time Capsule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation: every button shows one page -->
+  <header class="topbar">
+    <div class="logo">Keepsake</div>
+    <nav>
+      <button data-page="home">Home</button>
+      <button data-page="create">Create</button>
+      <button data-page="vault">My Vault</button>
+      <button data-page="timeline">Timeline</button>
+      <button data-page="about">About</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="page-home" class="page">
+      <h1>Write to the person you'll be later.</h1>
+      <p class="lead">Seal a message and a photo inside a capsule. It stays shut until the date you choose.</p>
+      <button class="gold-btn" data-page="create">Make a capsule</button>
+      <p class="small" id="homeStats"></p>
+    </section>
+
+    <!-- CREATE -->
+    <section id="page-create" class="page">
+      <h2>New capsule</h2>
+      <div class="paper">
+        <label>Title <input type="text" id="title" placeholder="2027 - Future me"></label>
+        <label>Message <textarea id="message" rows="5" placeholder="What do you want to remember?"></textarea></label>
+        <label>Photo (optional) <input type="file" id="photo" accept="image/*"></label>
+        <label>Recipient (optional) <input type="text" id="recipient" placeholder="Me, Priya, my future team..."></label>
+        <div class="row">
+          <label>Created on <input type="text" id="createdOn" disabled></label>
+          <label>Unlock on <input type="datetime-local" id="unlockOn"></label>
+        </div>
+        <label>Theme
+          <select id="theme">
+            <option value="gold">Gold</option>
+            <option value="rose">Rose</option>
+            <option value="forest">Forest</option>
+            <option value="ink">Midnight ink</option>
+          </select>
+        </label>
+        <p class="error" id="formError"></p>
+        <button class="gold-btn" id="sealBtn">Seal capsule</button>
+      </div>
+    </section>
+
+    <!-- VAULT -->
+    <section id="page-vault" class="page">
+      <h2>My vault</h2>
+      <div class="tabs">
+        <button id="tabLocked" class="active">Locked</button>
+        <button id="tabUnlocked">Unlocked</button>
+      </div>
+      <div id="vaultList" class="vault"></div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="page-timeline" class="page">
+      <h2>Memory timeline</h2>
+      <div id="timelineList"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="page-about" class="page">
+      <h2>About</h2>
+      <p class="lead">Keepsake is a front-end college project built with HTML, CSS and JavaScript. Capsules are saved in your browser with localStorage, so nothing leaves your device.</p>
+      <p class="lead">Clearing your browser data will delete your capsules.</p>
+    </section>
+  </main>
+
+  <!-- Opening screen (popup) -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <div id="intro">
+        <p id="introText"></p>
+        <button class="gold-btn" id="openNowBtn">Open it with me</button>
+      </div>
+      <div id="chest" class="chest hidden"><div class="lid"></div><div class="base"></div></div>
+      <div id="reveal" class="hidden">
+        <h2 id="rTitle" class="step"></h2>
+        <p id="rMeta" class="small step"></p>
+        <img id="rPhoto" class="step" alt="Photo from your capsule">
+        <p id="rMessage" class="step message"></p>
+      </div>
+      <button class="close-btn" id="closeBtn">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
